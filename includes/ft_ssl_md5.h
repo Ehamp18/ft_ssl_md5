@@ -6,7 +6,7 @@
 /*   By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 22:01:27 by elhampto          #+#    #+#             */
-/*   Updated: 2019/10/14 21:49:05 by elhampto         ###   ########.fr       */
+/*   Updated: 2019/10/19 19:32:50 by elhampto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,37 +17,47 @@
 
 #define ERROR_MESS "usage: ft_ssl command [command opts] [command args]"
 
-typedef	char	(*t_ret)(char *str);
-
-typedef struct	s_type
-{
-	int			num;
-	t_ret		funct;
-}				t_type;
-
 typedef struct	s_allints
 {
-	int			a[3];
-	int			b[3];
-	int			c[3];
-	int			d[3];
+	uint64_t	a[3];
+	uint64_t	b[3];
+	uint64_t	c[3];
+	uint64_t	d[3];
+	uint64_t	e;
 	char		n_bit;
 }				t_al;
 
+typedef struct	s_word_holder
+{
+	char		*str;
+	char		*word;
+	char		**bit_word;
+}				t_woer;
+
 typedef struct	s_sslfl
 {
-	int			p;
-	int			q;
-	int			r;
-	int			s;
-	int			type;
+	uint64_t	p;
+	uint64_t	q;
+	uint64_t	r;
+	uint64_t	s;
+	uint64_t	type;
+	uint64_t	fd;
 }				t_slfl;
+
+typedef	void	(*t_ret)(t_woer *lst, t_slfl *fla);
+
+typedef struct	s_type
+{
+	char		*name;
+	t_ret		funct;
+}				t_type;
 
 extern int64_t	g_k[];
 extern int64_t	g_s[];
-extern t_type	g_check;
+extern t_type	g_check[];
 
-char			*ft_md5(char *str);
+void			ft_md5(t_woer *lst, t_slfl *fla);
+void			ft_sha256(t_woer *lst, t_slfl *fla);
 void			mdflags(char *str, t_slfl *fla);
 
 #endif

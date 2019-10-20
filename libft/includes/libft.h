@@ -6,7 +6,7 @@
 /*   By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 14:55:15 by elhampto          #+#    #+#             */
-/*   Updated: 2019/08/24 05:00:54 by elhampto         ###   ########.fr       */
+/*   Updated: 2019/10/17 22:36:43 by elhampto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct		s_list
 ** Macros
 */
 
-# define BUFF_SIZE 32
+# define BUFF_SIZE 2000
 # define MAX_FD 4865
 # define BREAK(x) if (x) break ;
 # define ZERO(x) if (x) return (0)

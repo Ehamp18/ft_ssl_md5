@@ -6,7 +6,7 @@
 #    By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/27 17:30:33 by elhampto          #+#    #+#              #
-#    Updated: 2019/08/26 17:49:38 by elhampto         ###   ########.fr        #
+#    Updated: 2019/10/16 00:13:58 by elhampto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ OBJ += $(addsuffix .o, $(addprefix $(OBJ_DOR)/, $(LIB)))
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra $(INC)
+CFLAGS = -Wall -Werror -Wextra $(INC) -g
 
 all: $(OBJ_DOR) $(NAME)
 

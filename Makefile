@@ -6,7 +6,7 @@
 #    By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/19 21:34:35 by elhampto          #+#    #+#              #
-#    Updated: 2019/10/13 02:49:46 by elhampto         ###   ########.fr        #
+#    Updated: 2019/10/19 18:41:39 by elhampto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRC = flags \
 		hash \
 		main \
 		ft_md5 \
+		sha256
 
 INC = -I includes -I libft/includes
 
@@ -27,7 +28,7 @@ OBJ = $(addsuffix .o, $(addprefix $(OBJ_DIR)/, $(SRC)))
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra $(INC)
+CFLAGS = -Wall -Werror -Wextra $(INC) -g
 
 all: $(OBJ_DIR) $(NAME)
 
