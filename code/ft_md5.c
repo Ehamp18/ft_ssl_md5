@@ -6,7 +6,7 @@
 /*   By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 21:59:26 by elhampto          #+#    #+#             */
-/*   Updated: 2019/10/19 20:28:36 by elhampto         ###   ########.fr       */
+/*   Updated: 2019/10/19 22:47:03 by elhampto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,23 @@ static int			move(point, c)
 	return (point << c) | (point >> (32-c));
 }
 
-// void				bit_split(t_woer *lst, char *str)
-// {}
+void				bit_split(t_woer *lst, char *str, t_al *in)
+{
+	int				i;
+	int				z;
+
+	i = 0;
+	while (i < 16)
+	{
+		z = 0;
+		while (z < 4)
+		{
+			lst->bit_word[i][z] = str[(in->d[2] * 64) + (i * 4) + z];
+			z++;
+		}
+		i++;
+	}
+}
 
 void				ft_md5(t_woer *lst, t_slfl *fla)
 {
@@ -46,6 +61,10 @@ void				ft_md5(t_woer *lst, t_slfl *fla)
 	b0 = 0xefcdab89;
 	c0 = 0x98badcfe;
 	d0 = 0x10325476;
+	A = a0;
+	B = b0;
+	C = c0;
+	D = d0;
 	in.e = 0;
 	LEN = ((unsigned int)ft_strlen(lst->str + 8) / 64) + 1;
 	hashed_message = (unsigned char*)ft_memalloc(64 * LEN);
@@ -53,14 +72,10 @@ void				ft_md5(t_woer *lst, t_slfl *fla)
 	hashed_message[ft_strlen(lst->str)] = (char)128;
 	in.n_bit =(unsigned int)ft_strlen(lst->str) * 8;
 	hashed_message[ft_strlen((char*)hashed_message) - 8] = in.n_bit;
-	// bit_split(lst, hashed_message);
-	while (in.e < LEN) //each 512-bit chunk of padded message
+	bit_split(lst, (char*)hashed_message, &in);
+	while (in.e < 16) //each 512-bit chunk of padded message
 	{
-		// break chunk into sixteen 32-bit words M[j], 0 ≤ j ≤ 15;
-		A = a0;
-		B = b0;
-		C = c0;
-		D = d0;
+		// break chunk into sixteen 32-bit words M[j], 0 ≤ j ≤ 15
 		I = 0;
 		while (I < 64)
 		{
@@ -84,7 +99,7 @@ void				ft_md5(t_woer *lst, t_slfl *fla)
 				F = (C ^ (B | ~D));
 				G = (7 * I) % 16;
 			}
-			F = F + A + g_k[I] + hashed_message[G];
+			F = F + A + g_k[I] + lst->bit_word[in.e][G];
 			A = D;
 			D = C;
 			C = B;
