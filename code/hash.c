@@ -6,13 +6,13 @@
 /*   By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 21:59:01 by elhampto          #+#    #+#             */
-/*   Updated: 2019/10/19 18:42:23 by elhampto         ###   ########.fr       */
+/*   Updated: 2019/10/23 15:38:53 by elhampto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl_md5.h"
 
-int64_t g_k[] =
+unsigned int g_k[] =
 {
 	0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee,
 	0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501,
@@ -32,8 +32,10 @@ int64_t g_k[] =
 	0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391
 };
 
-/* s specifies the per-round shift amounts */
-int64_t	g_s[] = 
+/*
+** s specifies the per-round shift amounts
+*/
+unsigned int	g_s[] =
 {
 	7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
 	5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20,  5, 9, 14, 20,

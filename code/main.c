@@ -6,59 +6,95 @@
 /*   By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 21:59:19 by elhampto          #+#    #+#             */
-/*   Updated: 2019/10/19 22:15:03 by elhampto         ###   ########.fr       */
+/*   Updated: 2019/10/23 16:33:48 by elhampto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl_md5.h"
 
-int			main(int ac, char **av)
+#define I lst->i
+
+void		ma_loop(t_slfl *fla, t_woer *lst)
 {
-	int		i;
+	fla->type = -1;
+	while (++fla->type < 2)
+		if (ft_strcmp((char*)lst->conv, g_check[fla->type].name) == 0)
+		{
+			if (lst->word == NULL || !lst->word)
+			{
+				ft_printf("%s\n", NO_FIle_ST);
+				return ;
+			};
+			g_check[fla->type].funct(lst, fla);
+			break ;
+		}
+}
+
+static void	helper(t_woer *lst, char *str, t_slfl *fla)
+{
 	char	*tmp;
 	char	*tmp2;
-	t_slfl	fla;
-	t_woer	*lst;
 
-	lst = (t_woer*)ft_memalloc(sizeof(t_woer));
 	tmp = ft_strnew(BUFF_SIZE);
-	ft_bzero(&fla, sizeof(&fla));
-	i = 1;
-	if (ac >= 2)
-		while (av[i])
+	lst->word = ft_strdup(str);
+	lst->str = (char*)ft_memalloc(1);
+	ft_bzero(lst->str, 2);
+	tmp2 = ft_strnew(1);
+	while (read(fla->fd, tmp, BUFF_SIZE) > 0)
+	{
+		tmp2 = free_copy(lst->str, tmp2);
+		ft_bzero(lst->str, ft_strlen(lst->str));
+		lst->str = ft_strjoin(tmp2, tmp);
+	}
+	ma_loop(fla, lst);
+	free(lst->word);
+	free(lst->str);
+	free(tmp);
+	free(tmp2);
+}
+
+void		first_loop(char **av, t_slfl *fla, t_woer *lst)
+{
+	I = 1;
+	while (av[I])
+	{
+		if (!fla->s && av[I][0] != '-' &&
+			ft_strcmp((char*)lst->conv, av[I]) != 0)
 		{
-			if (av[i][0] == '-')
-				mdflags(av[i], &fla);
+			fla->fd = open(av[I], O_RDONLY);
+			if (fla->fd > 0)
+				helper(lst, av[I], fla);
 			else
-			{
-				if ((fla.fd = open(av[i + 1], O_RDONLY)))
-				{
-					lst->str = ft_strnew(sizeof(char));
-					while (read(fla.fd, tmp, BUFF_SIZE) > 0)
-					{
-						tmp2 = ft_strnew(sizeof(char));
-						tmp2 = free_copy(lst->str, tmp2);
-						lst->str = ft_strjoin(tmp2, tmp);
-						free(tmp2);
-					}
-				}
-				else
-					lst->str = ft_strdup(av[i + 1]);
-				fla.type = -1;
-				lst->word = ft_strdup(av[i + 1]);
-				while (++fla.type < 2)
-					if (ft_strcmp(av[i], g_check[fla.type].name) == 0)
-					{
-						g_check[fla.type].funct(lst, &fla);
-						free(lst->str);
-						break ;
-					}
-			}
-			i++;
+				ft_printf("value inputed is a string. Add flag \"-s\"\n");
+			close(fla->fd);
 		}
+		else if (fla->s && ft_strcmp((char*)lst->conv, av[I]) != 0)
+		{
+			lst->str = ft_strdup(av[I]);
+			lst->word = ft_strdup(av[I]);
+			ma_loop(fla, lst);
+			free(lst->word);
+			free(lst->str);
+		}
+		else if (av[I][0] == '-')
+			mdflags(av[I], &fla);
+		I++;
+	}
+}
+
+int			main(int ac, char **av)
+{
+	t_slfl	*fla;
+	t_woer	lst;
+
+	fla = (t_slfl*)ft_memalloc(sizeof(t_slfl));
+	ft_bzero(&lst, sizeof(&lst));
+	lst.conv = (unsigned char*)ft_strdup(av[1]);
+	if (ac >= 2)
+		first_loop(av, fla, &lst);
 	else
 		ft_printf("%s\n", ERROR_MESS);
-	free(tmp);
-	close(fla.fd);
+	free(lst.conv);
+	free(fla);
 	return (0);
 }

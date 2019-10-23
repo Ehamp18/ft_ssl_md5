@@ -6,7 +6,7 @@
 /*   By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 00:28:45 by elhampto          #+#    #+#             */
-/*   Updated: 2019/08/24 05:05:48 by elhampto         ###   ########.fr       */
+/*   Updated: 2019/10/23 16:26:58 by elhampto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ static char			*precision_x(int perc, char *point)
 	int				i;
 	char			*res;
 
-	res = ft_strnew(perc);
 	i = ft_strlen(point);
 	if (perc <= i)
 		return (ft_strdup(point));
 	if (!perc)
 		perc = 0;
+	res = ft_strnew(perc);
 	while (i >= 0 && perc)
 	{
 		res[perc] = point[i--];
