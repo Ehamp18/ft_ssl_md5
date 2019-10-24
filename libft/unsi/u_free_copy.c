@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sha256.c                                           :+:      :+:    :+:   */
+/*   u_free_copy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/19 18:38:06 by elhampto          #+#    #+#             */
-/*   Updated: 2019/10/24 11:42:23 by elhampto         ###   ########.fr       */
+/*   Created: 2019/10/24 13:07:14 by elhampto          #+#    #+#             */
+/*   Updated: 2019/10/24 13:25:10 by elhampto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ssl.h"
+#include "libft.h"
 
-void		ft_sha256(t_woer *lst, t_slfl *fla)
+u_char			*u_free_copy(u_char *com, u_char *tmp)
 {
-	(void)lst;
-	(void)fla;
+	free(tmp);
+	ft_bzero(tmp, u_strlen(tmp));
+	tmp = u_strjoin(tmp, com);
+	free(com);
+	return (tmp);
 }

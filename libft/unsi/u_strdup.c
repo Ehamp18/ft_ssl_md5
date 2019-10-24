@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sha256.c                                           :+:      :+:    :+:   */
+/*   u_strdup.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/19 18:38:06 by elhampto          #+#    #+#             */
-/*   Updated: 2019/10/24 11:42:23 by elhampto         ###   ########.fr       */
+/*   Created: 2019/10/24 13:27:40 by elhampto          #+#    #+#             */
+/*   Updated: 2019/10/24 14:08:45 by elhampto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ssl.h"
+#include "libft.h"
 
-void		ft_sha256(t_woer *lst, t_slfl *fla)
+u_char			*u_strdup(const char *src)
 {
-	(void)lst;
-	(void)fla;
+	u_char *dup;
+
+	if (!src || !(dup = (u_char*)malloc(sizeof(*dup) * (ft_strlen(src) + 1))))
+		return (NULL);
+	dup = u_strcpy(dup, (u_char*)src);
+	return (dup);
 }

@@ -6,7 +6,7 @@
 /*   By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 14:34:44 by elhampto          #+#    #+#             */
-/*   Updated: 2019/08/24 05:30:33 by elhampto         ###   ########.fr       */
+/*   Updated: 2019/10/24 11:04:17 by elhampto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,3 @@ int					get_next_line(const int fd, char **line)
 	str[fd] = new_str(str[fd], tmp);
 	return (1);
 }
-

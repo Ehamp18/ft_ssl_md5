@@ -6,7 +6,7 @@
 /*   By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 14:55:15 by elhampto          #+#    #+#             */
-/*   Updated: 2019/10/17 22:36:43 by elhampto         ###   ########.fr       */
+/*   Updated: 2019/10/24 13:30:26 by elhampto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,13 @@ int					ft_tolower(int c);
 int					ft_toupper(int c);
 int					ft_unumlen(uint64_t num);
 size_t				ft_wordcount(char const *s, char c);
+
+u_char				*u_free_copy(u_char *com, u_char *tmp);
+u_char				*u_strjoin(u_char const *s1, u_char const *s2);
+uint				u_strlen(const u_char *s);
+u_char				*u_strcpy(u_char *dst, const u_char *src);
+u_char				*u_strcat(u_char *s1, const u_char *s2);
+u_char				*u_strdup(const char *src);
 
 char				*free_copy(char *com, char *tmp);
 

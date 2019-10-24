@@ -6,11 +6,11 @@
 /*   By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 19:55:29 by elhampto          #+#    #+#             */
-/*   Updated: 2019/10/23 16:25:39 by elhampto         ###   ########.fr       */
+/*   Updated: 2019/10/24 11:41:31 by elhampto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ssl_md5.h"
+#include "ft_ssl.h"
 
 /*
 ** • -p, echo STDIN to STDOUT and append the checksum to STDOUT

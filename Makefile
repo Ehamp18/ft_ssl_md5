@@ -6,7 +6,7 @@
 #    By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/19 21:34:35 by elhampto          #+#    #+#              #
-#    Updated: 2019/10/22 13:58:54 by elhampto         ###   ########.fr        #
+#    Updated: 2019/10/24 11:44:44 by elhampto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ SRC = flags \
 		hash \
 		main \
 		ft_md5 \
-		sha256
+		sha256 \
+		helper
 
 INC = -I includes -I libft/includes
 

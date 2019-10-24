@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sha256.c                                           :+:      :+:    :+:   */
+/*   u_strcpy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/19 18:38:06 by elhampto          #+#    #+#             */
-/*   Updated: 2019/10/24 11:42:23 by elhampto         ###   ########.fr       */
+/*   Created: 2019/10/24 13:17:43 by elhampto          #+#    #+#             */
+/*   Updated: 2019/10/24 13:30:19 by elhampto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ssl.h"
+#include "libft.h"
 
-void		ft_sha256(t_woer *lst, t_slfl *fla)
+u_char			*u_strcpy(u_char *dst, const u_char *src)
 {
-	(void)lst;
-	(void)fla;
+	uint			i;
+
+	i = 0;
+	while (src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
 }
