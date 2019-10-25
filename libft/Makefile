@@ -6,7 +6,7 @@
 #    By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/27 17:30:33 by elhampto          #+#    #+#              #
-#    Updated: 2019/10/24 13:28:28 by elhampto         ###   ########.fr        #
+#    Updated: 2019/10/25 11:07:02 by elhampto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ LIB = ft_atoi ft_bzero ft_ccstrjoin ft_ccstrjoini ft_cstrjoin ft_cstrjoini \
 	ft_strmapi ft_strncat ft_strncpy ft_strncmp ft_strnequ ft_strnew \
 	ft_strnstr ft_strrchr ft_strsplit ft_strstr ft_strsub ft_strtrim \
 	ft_toupper ft_tolower ft_wordcount ft_tabs ft_unumlen ft_wordcount \
-	u_free_copy u_strjoin u_strlen u_strcpy u_strcat u_strdup\
+	u_free_copy u_strjoin u_strlen u_strcpy u_strcat u_strdup ft_charcpy\
 
 INC = -I includes
 

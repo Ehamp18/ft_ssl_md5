@@ -6,7 +6,7 @@
 /*   By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 22:01:27 by elhampto          #+#    #+#             */
-/*   Updated: 2019/10/24 17:36:28 by elhampto         ###   ########.fr       */
+/*   Updated: 2019/10/25 14:29:19 by elhampto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ typedef struct		s_allints
 	uint			d0;
 	uint			len;
 	uint			i;
-	uint			j;
 	uint			f;
 	uint			e;
 	uint			g;
+	int				j;
 	int				num;
 	int				block;
 	char			n_bit;
@@ -44,7 +44,7 @@ typedef struct		s_word_holder
 	u_char			*str;
 	u_char			*conv;
 	char			*word;
-	u_char			**bit;
+	u_char			bit[17][4];
 }					t_woer;
 
 typedef struct		s_sslfl
@@ -76,8 +76,7 @@ void				print_rflag(t_slfl *fla, t_woer *lst, t_al *in);
 void				print_flag(t_slfl *fla, t_woer *lst, t_al *in);
 void				bit_split(t_woer *lst, u_char *str, t_al *in);
 void				ft_assign(t_al *in);
-void				*clean(u_char *str, t_al *in, uint times);
-uint				left_rot(t_al *in, uint y);
+void				*clean(u_char *str, t_al *in, int times);
 u_char				*last_eight(t_al *in, u_char *msg, t_woer *lst);
 
 #endif

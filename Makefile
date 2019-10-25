@@ -6,7 +6,7 @@
 #    By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/19 21:34:35 by elhampto          #+#    #+#              #
-#    Updated: 2019/10/24 15:25:28 by elhampto         ###   ########.fr        #
+#    Updated: 2019/10/25 13:33:34 by elhampto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ OBJ = $(addsuffix .o, $(addprefix $(OBJ_DIR)/, $(SRC)))
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra $(INC) -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra $(INC) -g
 
 all: $(OBJ_DIR) $(NAME)
 

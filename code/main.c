@@ -6,7 +6,7 @@
 /*   By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 21:59:19 by elhampto          #+#    #+#             */
-/*   Updated: 2019/10/24 16:04:41 by elhampto         ###   ########.fr       */
+/*   Updated: 2019/10/25 14:03:02 by elhampto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void				first_loop(char **av, t_slfl *fla, t_woer *lst)
 		{
 			lst->str = u_strdup(av[I]);
 			lst->word = ft_strdup(av[I]);
-			ft_printf("hex check in main: %.8x\n", lst->str);
 			ma_loop(fla, lst);
 			free(lst->word);
 			free(lst->str);
@@ -87,17 +86,14 @@ void				first_loop(char **av, t_slfl *fla, t_woer *lst)
 
 int					main(int ac, char **av)
 {
-	t_slfl	*fla;
+	t_slfl	fla;
 	t_woer	lst;
 
-	fla = (t_slfl*)ft_memalloc(sizeof(t_slfl));
-	ft_bzero(&lst, sizeof(&lst));
 	lst.conv = (u_char*)ft_strdup(av[1]);
 	if (ac >= 2)
-		first_loop(av, fla, &lst);
+		first_loop(av, &fla, &lst);
 	else
 		ft_printf("%s\n", ERROR_MESS);
 	free(lst.conv);
-	free(fla);
 	return (0);
 }
