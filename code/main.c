@@ -6,7 +6,7 @@
 /*   By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 21:59:19 by elhampto          #+#    #+#             */
-/*   Updated: 2019/10/24 14:28:21 by elhampto         ###   ########.fr       */
+/*   Updated: 2019/10/24 16:04:41 by elhampto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static void			add_on(t_woer *lst, char *str, t_slfl *fla)
 	ft_bzero(lst->str, 1);
 	while ((val = read(fla->fd, tmp, BUFF_SIZE)) > 0)
 	{
-		tmp[BUFF_SIZE] = '\0';
 		tmp2 = u_free_copy(lst->str, tmp2);
 		lst->str = u_strjoin(tmp2, tmp);
 		free(tmp);

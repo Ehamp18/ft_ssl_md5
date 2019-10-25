@@ -6,7 +6,7 @@
 /*   By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 21:59:26 by elhampto          #+#    #+#             */
-/*   Updated: 2019/10/24 13:34:05 by elhampto         ###   ########.fr       */
+/*   Updated: 2019/10/24 20:46:41 by elhampto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void		hash_loop(t_al *in, t_woer *lst)
 				in->f = in->c ^ (in->b | (~in->d));
 				in->g = (7 * in->i) % 16;
 			}
-			in->f = in->f + in->a + g_k[in->i] + *((uint*)lst->bit[in->g]);
+			in->f = in->f + in->a + g_k[in->i] + *lst->bit[in->g];
 			in->a = in->d;
 			in->d = in->c;
 			in->c = in->b;
@@ -72,13 +72,9 @@ void			ft_md5(t_woer *lst, t_slfl *fla)
 	in.block = (u_strlen(lst->str + 8) / 64) + 1;
 	hashed_message = (u_char*)malloc(64 * in.block);
 	clean(hashed_message, &in, 64);
-	ft_printf("hex check: %.8x\n", hashed_message);
 	u_strcpy(hashed_message, lst->str);
-	ft_printf("hex check: %.8x\n", hashed_message);
 	hashed_message[in.len] = 128;
-	ft_printf("hex check: %.8x\n", hashed_message);
-	last_eight(&in, &hashed_message, lst);
-	ft_printf("hex check: %.8x\n", hashed_message);
+	hashed_message = last_eight(&in, hashed_message, lst);
 	bit_split(lst, hashed_message, &in);
 	hash_loop(&in, lst);
 	lil(&in.a0);

@@ -6,7 +6,7 @@
 /*   By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 22:01:27 by elhampto          #+#    #+#             */
-/*   Updated: 2019/10/24 12:46:38 by elhampto         ###   ########.fr       */
+/*   Updated: 2019/10/24 17:36:28 by elhampto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,6 @@ void				bit_split(t_woer *lst, u_char *str, t_al *in);
 void				ft_assign(t_al *in);
 void				*clean(u_char *str, t_al *in, uint times);
 uint				left_rot(t_al *in, uint y);
-void				last_eight(t_al *in, u_char **msg, t_woer *lst);
+u_char				*last_eight(t_al *in, u_char *msg, t_woer *lst);
 
 #endif
