@@ -6,7 +6,7 @@
 /*   By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 21:59:26 by elhampto          #+#    #+#             */
-/*   Updated: 2019/10/25 14:29:03 by elhampto         ###   ########.fr       */
+/*   Updated: 2019/10/27 17:20:47 by elhampto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void		lil(uint *j, t_al *in)
 
 static void		math(t_al *in)
 {
-	if (in->i > 0 && in->i < 16)
+	if (in->i > 0 && in->i < 16) // needs to be >= 0 or it is wrong!!!!
 	{
 		in->f = (in->b & in->c) | ((~in->b) & in->d);
 		in->g = in->i;
@@ -40,12 +40,12 @@ static void		math(t_al *in)
 	else if (in->i >= 16 && in->i < 32)
 	{
 		in->f = (in->d & in->b) | ((~in->d) & in->c);
-		in->g = (5 * in->i + 1) % 16;
+		in->g = ((5 * in->i) + 1) % 16;
 	}
 	else if (in->i >= 32 && in->i < 48)
 	{
 		in->f = (in->b ^ in->c ^ in->d);
-		in->g = (3 * in->i + 5) % 16;
+		in->g = ((3 * in->i) + 5) % 16;
 	}
 	else
 	{
@@ -60,7 +60,8 @@ static void		hash_loop(t_al *in, t_woer *lst)
 	while (++in->i < 64)
 	{
 		math(in);
-		in->f = in->f + in->a + g_k[in->i] + *lst->bit[in->g];
+		// in->f = in->f + in->a + g_k[in->i] + *((uint32_t*)lst->bit[in->g]);
+		in->f = in->f + in->a + g_k[in->i] + *((uint32_t*)lst->bit[in->g]);
 		in->a = in->d;
 		in->d = in->c;
 		in->c = in->b;
@@ -81,20 +82,21 @@ void			ft_md5(t_woer *lst, t_slfl *fla)
 	ft_assign(&in);
 	in.e = 0;
 	in.len = u_strlen(lst->str);
-	in.block = (u_strlen(lst->str + 8) / 64) + 1;
-	hashed_message = (u_char*)malloc(64 * in.block);
-	clean(hashed_message, &in, 64);
-	u_strcpy(hashed_message, lst->str);
-	hashed_message[in.len] = 128;
-	hashed_message = last_eight(&in, hashed_message, lst);
+	in.block = in.len ? ((in.len + 8) / 64) + 1 : 1;
+	hashed_message = malloc(64 * in.block);
+	//zeroing out HASHED_MESSAGE may not be necessary 
+	//considering the string datatype is unsigned char!
+	ft_bzero(hashed_message, (uint32_t)(64 * in.block));
+	ft_strcpy((char*)hashed_message, (char*)lst->str);
+	printf("chek 1: %s\n", hashed_message);
+	printf("chek 2: %s\n", lst->str);
+	hashed_message[in.len ? in.len : 0] = 0x80;
+	hashed_message = last_eight(&in, hashed_message);
 	in.j = -1;
 	while (++in.j < in.block)
 	{
 		bit_split(lst, hashed_message, &in);
 		hash_loop(&in, lst);
-		in.i = -1;
-		while (++in.i <= 17)
-			ft_bzero(lst->bit[in.i], ft_strlen((char*)lst->bit[in.i]));
 	}
 	lil(&in.a0, &in);
 	lil(&in.b0, &in);

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef printf_H
+# define printf_H
 
 # include <stdarg.h>
 # include <unistd.h>
@@ -80,7 +80,7 @@ extern t_check	g_conver_check[];
 ** Converstions
 */
 
-int				ft_printf(const char *format, ...);
+int				printf(const char *format, ...);
 void			con_d(va_list options, t_flags *flags, t_val *val);
 void			con_c(va_list options, t_flags *flags, t_val *val);
 void			con_s(va_list options, t_flags *flags, t_val *val);

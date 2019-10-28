@@ -6,7 +6,7 @@
 /*   By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:40:17 by elhampto          #+#    #+#             */
-/*   Updated: 2019/10/25 14:29:09 by elhampto         ###   ########.fr       */
+/*   Updated: 2019/10/27 16:55:56 by elhampto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void			bit_split(t_woer *lst, u_char *str, t_al *in)
 {
-	int			i;
-	int			z;
+	uint32_t			i;
+	uint32_t			z;
 
 	i = -1;
 	while (++i < 16)
 	{
 		z = -1;
 		while (++z < 4)
-			lst->bit[i][z] = (uint)str[(in->j * 64) + (i * 4) + z];
+			lst->bit[i][z] = str[(in->j * 64) + (i * 4) + z];
 	}
 }
 
@@ -38,7 +38,7 @@ void			ft_assign(t_al *in)
 	in->d = in->d0;
 }
 
-void			*clean(u_char *str, t_al *in, int times)
+void			*clean(u_char *str, t_al *in, uint32_t times)
 {
 	in->j = -1;
 	while (++in->j < times)
@@ -46,13 +46,13 @@ void			*clean(u_char *str, t_al *in, int times)
 	return (str);
 }
 
-u_char			*last_eight(t_al *in, u_char *msg, t_woer *lst)
+u_char			*last_eight(t_al *in, u_char *msg)
 {
-	in->j = -1;
 	in->len = in->len << 3;
+	in->j = -1;	
 	while (++in->j < 8)
 	{
-		BREAK(!(u_strlen(lst->str) >> (in->j * 8)));
+		BREAK(!(in->len >> (in->j * 8)));
 		msg[((64 * in->block) - 8) + in->j] = in->len >> (in->j * 8);
 	}
 	return (msg);

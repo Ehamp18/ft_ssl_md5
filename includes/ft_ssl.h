@@ -6,7 +6,7 @@
 /*   By: elhampto <elhampto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 22:01:27 by elhampto          #+#    #+#             */
-/*   Updated: 2019/10/25 14:29:19 by elhampto         ###   ########.fr       */
+/*   Updated: 2019/10/27 16:55:46 by elhampto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,49 @@
 # define FT_SSL_H
 
 # include "libft.h"
+# include <stdio.h>
 # define ERROR_MESS "usage: ft_ssl command [command opts] [command args]"
 # define NO_FILE_ST "usage: ft_ssl command no input file or string"
 
 typedef struct		s_allints
 {
-	uint			a;
-	uint			b;
-	uint			c;
-	uint			d;
-	uint			a0;
-	uint			b0;
-	uint			c0;
-	uint			d0;
-	uint			len;
-	uint			i;
-	uint			f;
-	uint			e;
-	uint			g;
-	int				j;
-	int				num;
-	int				block;
-	char			n_bit;
+	uint32_t		a;
+	uint32_t		b;
+	uint32_t		c;
+	uint32_t		d;
+	uint32_t		a0;
+	uint32_t		b0;
+	uint32_t		c0;
+	uint32_t		d0;
+	uint32_t		len;
+	uint32_t		f;
+	uint32_t		e;
+	uint32_t		g;
+	uint32_t		j;
+	uint32_t		i;
+	uint32_t		num;
+	uint32_t		block;
+	u_char			n_bit;
 }					t_al;
 
 typedef struct		s_word_holder
 {
-	uint			i;
+	uint32_t		i;
 	u_char			*str;
 	u_char			*conv;
-	char			*word;
-	u_char			bit[17][4];
+	u_char			*word;
+	u_char			bit[16][4];
 }					t_woer;
 
 typedef struct		s_sslfl
 {
-	uint			p;
-	uint			q;
-	uint			r;
-	uint			s;
-	uint			type;
+	uint32_t		p;
+	uint32_t		q;
+	uint32_t		r;
+	uint32_t		s;
+	uint32_t		type;
 	int				fd;
+	int				val;
 }					t_slfl;
 
 typedef	void		(*t_ret)(t_woer *lst, t_slfl *fla);
@@ -65,8 +67,8 @@ typedef struct		s_type
 	t_ret			funct;
 }					t_type;
 
-extern uint			g_k[];
-extern uint			g_s[];
+extern uint32_t		g_k[64];
+extern uint32_t		g_s[64];
 extern t_type		g_check[];
 
 void				ft_md5(t_woer *lst, t_slfl *fla);
@@ -76,7 +78,7 @@ void				print_rflag(t_slfl *fla, t_woer *lst, t_al *in);
 void				print_flag(t_slfl *fla, t_woer *lst, t_al *in);
 void				bit_split(t_woer *lst, u_char *str, t_al *in);
 void				ft_assign(t_al *in);
-void				*clean(u_char *str, t_al *in, int times);
-u_char				*last_eight(t_al *in, u_char *msg, t_woer *lst);
+void				*clean(u_char *str, t_al *in, uint32_t times);
+u_char				*last_eight(t_al *in, u_char *msg);
 
 #endif
